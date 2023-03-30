@@ -31,4 +31,8 @@ public class Reservations {
     private LocalDateTime date;
     private Boolean isReserved;
 
+    public void addUser(AppUser newAppUser) {
+        appUser = newAppUser;
+        isReserved = true;
+    }
 }

@@ -1,12 +1,11 @@
 package com.codecool.el_projecto_grande.company.controlers;
 
 
+import com.codecool.el_projecto_grande.company.dto.ReservationDTO;
 import com.codecool.el_projecto_grande.company.entities.Reservations;
 import com.codecool.el_projecto_grande.company.services.ReservationsService;
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -21,5 +20,19 @@ public class ReservationController {
         return reservationsService.getAllReservations();
     }
 
+    @GetMapping("/employee/{employeeID}")
+    public List<ReservationDTO> getAllReservationsByEmployee(@PathVariable Long employeeID){
+        return reservationsService.getAllReservationsByEmployee(employeeID);
+    }
+
+    @GetMapping("/user/{userID}")
+    public List<ReservationDTO> getAllReservationsByUser(@PathVariable Long appUserID){
+        return reservationsService.getAllReservationsByUser(appUserID);
+    }
+
+    @PutMapping("/reseravtions/{reservationID}/user/{userID}")
+    public void assignUserToReservation(@PathVariable Long reservationID, @PathVariable Long userID){
+        reservationsService.assignUserToReservation(reservationID, userID);
+    }
 
 }

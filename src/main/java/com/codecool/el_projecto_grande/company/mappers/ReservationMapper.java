@@ -18,7 +18,7 @@ public class ReservationMapper {
                 reservations.getIsReserved()
 
 
-        )
+        );
     }
 
     private  IdAndNamePair getIDAndName(Employee employee) {

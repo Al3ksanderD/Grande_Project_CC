@@ -44,8 +44,7 @@ public class EmployeeService {
 
         employee.assignCompany(company);
         company.addEmployee(employee);
-        System.out.println(company.getEmployees());
-        System.out.println(employee.getCompanyEmployedAt());
+
         companyRepository.save(company);
 
     }

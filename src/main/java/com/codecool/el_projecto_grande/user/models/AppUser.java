@@ -115,4 +115,9 @@ public class AppUser implements UserDetails {
     public boolean isEnabled() {
         return enabled;
     }
+
+    public void addReservation(Reservations reservations) {
+        userReservations.add(reservations);
+
+    }
 }
