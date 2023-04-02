@@ -31,6 +31,12 @@ public class Reservations {
     private LocalDateTime date;
     private Boolean isReserved;
 
+    public Reservations(Employee assigned_employee, LocalDateTime date, Boolean isReserved) {
+        this.employee = assigned_employee;
+        this.date = date;
+        this.isReserved = isReserved;
+    }
+
     public void addUser(AppUser newAppUser) {
         appUser = newAppUser;
         isReserved = true;

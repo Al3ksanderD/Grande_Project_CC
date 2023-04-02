@@ -2,6 +2,7 @@ package com.codecool.el_projecto_grande.company.controlers;
 
 
 import com.codecool.el_projecto_grande.company.dto.ReservationDTO;
+import com.codecool.el_projecto_grande.company.dto.newDTO.NewReservationDTO;
 import com.codecool.el_projecto_grande.company.entities.Reservations;
 import com.codecool.el_projecto_grande.company.services.ReservationsService;
 import lombok.AllArgsConstructor;
@@ -15,8 +16,13 @@ import java.util.List;
 public class ReservationController {
     private ReservationsService reservationsService;
 
+    @PostMapping
+    public ReservationDTO addNewReservation(@RequestBody NewReservationDTO newReservationDTO){
+        return reservationsService.addNewReservation(newReservationDTO);
+    }
+
     @GetMapping
-    public List<Reservations> getAllReservations(){
+    public List<ReservationDTO> getAllReservations(){
         return reservationsService.getAllReservations();
     }
 

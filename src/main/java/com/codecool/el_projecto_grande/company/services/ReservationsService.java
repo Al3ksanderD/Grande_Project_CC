@@ -1,11 +1,15 @@
 package com.codecool.el_projecto_grande.company.services;
 
 import com.codecool.el_projecto_grande.company.dto.ReservationDTO;
+import com.codecool.el_projecto_grande.company.dto.newDTO.NewReservationDTO;
+import com.codecool.el_projecto_grande.company.entities.Employee;
 import com.codecool.el_projecto_grande.company.entities.Reservations;
 import com.codecool.el_projecto_grande.company.mappers.ReservationMapper;
+import com.codecool.el_projecto_grande.company.repositories.EmployeeRepository;
 import com.codecool.el_projecto_grande.company.repositories.ReservationsRepository;
 import com.codecool.el_projecto_grande.user.models.AppUser;
 import com.codecool.el_projecto_grande.user.repositories.UserRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -13,12 +17,16 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.List;
 
 @Service
+@AllArgsConstructor
 public class ReservationsService {
     private ReservationsRepository reservationsRepository;
+    private EmployeeRepository employeeRepository;
     private UserRepository userRepository;
     private ReservationMapper reservationMapper;
-    public List<Reservations> getAllReservations() {
-        return reservationsRepository.findAll();
+    public List<ReservationDTO> getAllReservations() {
+        return reservationsRepository.findAllBy().stream()
+                .map(r -> reservationMapper.reservationEntityToDTO(r))
+                .toList();
     }
 
     public List<ReservationDTO> getAllReservationsByEmployee(Long employeeID) {
@@ -43,5 +51,13 @@ public class ReservationsService {
         appUser.addReservation(reservations);
 
         userRepository.save(appUser);
+    }
+
+    public ReservationDTO addNewReservation(NewReservationDTO newReservationDTO) {
+        Employee employee = employeeRepository.findOneById(newReservationDTO.getEmployee_id())
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        Reservations entity = reservationMapper.reservationsDTOToEntity(newReservationDTO, employee);
+        Reservations savedReservation = reservationsRepository.save(entity);
+        return reservationMapper.reservationEntityToDTO(savedReservation);
     }
 }

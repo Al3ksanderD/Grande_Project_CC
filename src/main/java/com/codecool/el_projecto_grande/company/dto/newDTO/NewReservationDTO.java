@@ -8,12 +8,12 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 public class NewReservationDTO {
-    private IdAndNamePair employee;
+    private Long employee_id;
     private LocalDateTime date;
     private Boolean isReserved = false;
 
-    public NewReservationDTO(IdAndNamePair employee, LocalDateTime date) {
-        this.employee = employee;
+    public NewReservationDTO(Long employee, LocalDateTime date) {
+        this.employee_id = employee;
         this.date = date;
     }
 }

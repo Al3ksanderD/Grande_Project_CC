@@ -11,6 +11,9 @@ import java.util.Optional;
 
 @Repository
 public interface ReservationsRepository extends JpaRepository<Reservations, Long> {
+
+    @Query("SELECT DISTINCT e from Reservations e LEFT JOIN FETCH e.employee LEFT JOIN FETCH e.appUser")
+    List<Reservations> findAllBy();
     @Query("SELECT DISTINCT e from Reservations e LEFT JOIN FETCH e.employee LEFT JOIN FETCH e.appUser" +
             " WHERE e.employee.id = :id ")
     List<Reservations> findAllByEmployeeID(Long id);
