@@ -17,4 +17,5 @@ public class CompanyDTO {
     private String name;
     private String description;
     private List<IdAndNamePair> employees;
+    private String city;
 }

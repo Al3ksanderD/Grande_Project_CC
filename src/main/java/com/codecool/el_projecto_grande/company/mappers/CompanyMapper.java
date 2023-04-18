@@ -15,14 +15,16 @@ public class CompanyMapper {
                 company.getDescription(),
                 company.getEmployees().stream()
                         .map(d -> new IdAndNamePair(d.getId(), d.getName()))
-                        .toList()
+                        .toList(),
+                company.getCity()
         );
     }
 
     public Company companyDTOToEntity(NewCompanyDTO companyDTO){
         return new Company(
                 companyDTO.getName(),
-                companyDTO.getDescription()
+                companyDTO.getDescription(),
+                companyDTO.getCity()
         );
     }
 }

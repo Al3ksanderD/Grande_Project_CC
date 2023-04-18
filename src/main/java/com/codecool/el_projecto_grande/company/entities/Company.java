@@ -44,10 +44,12 @@ public class Company {
             inverseJoinColumns = @JoinColumn(name = "employee_id")
     )
     private List<Employee> employees = new ArrayList<>();
+    private String city;
 
-    public Company(String name, String description) {
+    public Company(String name, String description, String city) {
         this.name = name;
         this.description = description;
+        this.city = city;
 
     }
 

@@ -12,6 +12,7 @@ import java.util.Set;
 @AllArgsConstructor
 public class NewCompanyDTO {
     private String name;
-    private String position;
+    //private String position;
     private String description;
+    private String city;
 }

@@ -12,6 +12,7 @@ import java.util.List;
 @RestController
 @RequestMapping(path="api/v1/companies")
 @AllArgsConstructor
+@CrossOrigin(origins = "http://localhost:3000")
 public class companyController {
 
     private CompanyService companyService;
@@ -26,13 +27,17 @@ public class companyController {
         return companyService.saveNewCompany(newCompanyDTO);
     }
 
-    @GetMapping("/{companyID}")
+    @GetMapping("/id/{companyID}")
     public CompanyDTO getCompanyById(@PathVariable Long companyID){
         return companyService.getCompanyById(companyID);
 
     }
 
+    @GetMapping("/city/{companyCity}")
+    public List<CompanyDTO> getCompanyByCity(@PathVariable String companyCity){
+        return companyService.getCompanyByCity(companyCity);
 
+    }
 
 
 

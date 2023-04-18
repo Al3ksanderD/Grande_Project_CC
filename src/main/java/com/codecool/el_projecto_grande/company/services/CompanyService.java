@@ -35,4 +35,10 @@ public class CompanyService {
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
         return companyMapper.companyEntityToDTO(entity);
     }
+
+    public List<CompanyDTO> getCompanyByCity(String companyCity) {
+        return companyRepository.findByCity(companyCity).stream()
+                .map(d -> companyMapper.companyEntityToDTO(d))
+                .toList();
+    }
 }
