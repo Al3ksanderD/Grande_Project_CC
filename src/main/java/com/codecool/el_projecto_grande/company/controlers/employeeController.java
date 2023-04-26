@@ -19,6 +19,11 @@ public class employeeController {
         return employeeService.getAllEmployees();
     }
 
+    @GetMapping("/company/{id}")
+    public List<EmployeeDTO> getAllEmployeesByCompany(@PathVariable Long companyID){
+        return employeeService.getAllEmployeesByCompany(companyID);
+    }
+
     @PostMapping
     public EmployeeDTO addNewEmployee(@RequestBody NewEmployeeDTO newEmployeeDTO){
         return employeeService.addNewEmployee(newEmployeeDTO);

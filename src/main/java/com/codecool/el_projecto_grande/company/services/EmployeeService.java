@@ -54,4 +54,10 @@ public class EmployeeService {
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
         return employeeMapper.EmployeeEntityToDTO(entity);
     }
+
+    public List<EmployeeDTO> getAllEmployeesByCompany(Long companyID) {
+        return employeeRepository.findAllByCompany(companyID).stream()
+                .map(d -> employeeMapper.EmployeeEntityToDTO(d))
+                .toList();
+    }
 }
